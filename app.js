@@ -1,7 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
-const routes = require('./routes');
+const userRoutes = require('./routes/user');
+const productRoutes = require('./routes/product')
 
 
 const app = express()
@@ -12,7 +13,8 @@ dotenv.config(); //Load variables from the env
 app.use(bodyParser.json());
 
 // Serve the routes
-app.use('/api', routes);
+app.use('/api', userRoutes);
+app.use('/api', productRoutes);
 
 // Default route for testing the server
 app.get('/', (req, res) => {
