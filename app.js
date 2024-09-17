@@ -1,26 +1,26 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
-const userRoutes = require('./routes/user');
+const routes = require('./routes');
 
 
-// Middleware to parse incoming requests as JSON
 const app = express()
 
 dotenv.config(); //Load variables from the env
 
+//Middelware to parde incoming resquest JSON
 app.use(bodyParser.json());
 
 // Serve the routes
-app.use('api', userRoutes);
+app.use('/api', routes);
 
 // Default route for testing the server
-app.get('/', (res, req) => {
+app.get('/', (req, res) => {
 	res.send('Welcome to the API!');
 });
 
 // Error handling middleware
-app.use((err, res, req, next) =>{
+app.use((err, req, res, next) =>{
 	res.status(500).json({error: err.message})
 });
 
