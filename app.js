@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const userRoutes = require('./routes/user');
 const productRoutes = require('./routes/product')
+const orderRoutes = require('./routes/order')
 
 
 const app = express()
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 // Serve the routes
 app.use('/api', userRoutes);
 app.use('/api', productRoutes);
+app.use('api', orderRoutes);
 
 // Default route for testing the server
 app.get('/', (req, res) => {
