@@ -5,9 +5,9 @@ exports.createProduct = async (req, res) => {
 		res.status(400).json({message: "Empty request"})
 	try{
 		const product = await Product.create(req.body)
-		res.status(201).json({message: "Product created sucessfully", product})
+		return res.status(201).json({message: "Product created sucessfully", product})
 	} catch (err) {
-		res.status(500).json({message: err})
+		return res.status(500).json({message: "Internal server error", error: err.message})
 	}
 }
 
