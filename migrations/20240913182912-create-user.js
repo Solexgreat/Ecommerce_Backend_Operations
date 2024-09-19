@@ -29,6 +29,13 @@ module.exports = {
         type: Sequelize.STRING,
         defaultValue: 'customer'
       },
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Users", //Name of the table
+          key: 'id'
+        }
+      }
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
