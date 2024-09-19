@@ -11,9 +11,10 @@ module.exports = {
       },
       amount: {
         allowNull: false,
-        type: Sequelize.FLOAT
+        type: Sequelize.FLOAT,
+        defaultValue: 1.0
       },
-      orederDate: {
+      orderDate: {
         allowNull: false,
         type: Sequelize.DATE
       },

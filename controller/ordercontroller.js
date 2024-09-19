@@ -1,18 +1,58 @@
-const Order = require('../models/order')
-const {productUpdate} = require('./productController')
+const {Order} = require('../models')
+const {productStockUpdate} = require('./productController')
 
 exports.order = async (req, res) => {
-	const {amount, orderDate, productId} = req.body
+	const {amount, orderDate, productId, userId} = req.body;
+	const sign = '-';
 	if (!amount || !orderDate || !productId)
 		return res.status(400).json({message: "Incomplete request"})
 	try{
-		const orderStatus = await productUpdate(productId, amount)
+		const orderStatus = await productStockUpdate(productId, amount, sign)
 		if (orderStatus.error)
 			return res.status(403).json({message: orderStatus.error})
-		const orderDetails = await Order.create(amount, orderDate, productId)
-
-		return res.status(200).json({message: orderStatus.message, order: orderDetails, product: orderStatus.product,})
+		const orderDetails = await Order.create({amount: amount,
+			orderDate: orderDate,
+			productId: productId,
+			userId: userId
+	})
+		return res.status(200).json({message: orderStatus.message,
+			order: orderDetails,
+			product: orderStatus.product
+		})
 	} catch (err){
-		return res.status(500).json({message: "Internal server error", error: err.message})
+			return res.status(500).json({message: "Internal server error", error: err.message})
 	}
+}
+
+exports.cancelOrder = async (req, res) =>{
+	const {productId, orderId} = req.body;
+	const sign = '+';
+	if (!orderId || !productId)
+		return res.status(400).json({message: "Incomplete request"})
+	try{
+		orderToBeDeleted = await Order.findByPk(orderId)
+		if (!orderToBeDeleted)
+			return res.status(403).json({message: "order not found"})
+
+		const orderStatus = await productStockUpdate(productId, orderToBeDeleted.amount, sign)
+		if (orderStatus.error)
+			return res.status(403).json({message: orderStatus.error})
+		await Order.destroy({ where :{id: orderId}});
+
+		return res.status(200).json({message: orderStatus.message, order: 'Cancelled', product: orderStatus.product,})
+	} catch (err){
+			return res.status(500).json({message: "Internal server error", error: err.message})
+	}
+}
+
+exports.getOrders = async (req, res) => {
+	const {userId} = req.body;
+try{
+	if (!userId)
+		return res.status(400).json({message: "Incomplete request"});
+	const orders = await Order.findAll({ where: {userId: userId}});
+	return res.status(200).json(orders);
+} catch (err) {
+	return res.status(500).json({message: "Internal server error", error: err.message})
+}
 }

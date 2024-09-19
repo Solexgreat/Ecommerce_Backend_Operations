@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 // Serve the routes
 app.use('/api', userRoutes);
 app.use('/api', productRoutes);
-app.use('api', orderRoutes);
+app.use('/api', orderRoutes);
 
 // Default route for testing the server
 app.get('/', (req, res) => {

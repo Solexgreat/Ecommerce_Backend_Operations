@@ -12,23 +12,27 @@ exports.createProduct = async (req, res) => {
 	}
 }
 
-exports.productUpdate = async (productId, amount) => {
+exports.productStockUpdate = async (productId, amount, sign) => {
 	try{
-		if (typeof productId !== 'number' || typeof amount !== 'number')
+		if (typeof productId !== 'number' || typeof amount !== 'number' || typeof sign !== 'string')
 			throw new Error("Expecting an Integer for productId and amount")
 
-		const product = await Product.findbyPk(productId)
+		const product = await Product.findByPk(productId)
 		if (!product)
 			throw new Error('Product not found')
 
-		const newAmount = product.amount - amount;
-		if (newAmount < 0) {
-      throw new Error('Insufficient stock to fulfill the order');
-    }
+		if (sign === '-') {
+			const newAmount = product.stock - amount;
+			if (newAmount < 0)
+				throw new Error('Insufficient stock to fulfill the order');
+			product.stock = newAmount;
+		} else {
+			const newAmount = product.stock + amount;
+			product.stock = newAmount;
+		}
 
-		product.amount = newAmount;
 		product.save();
-		return {message: "order successfull", product}
+		return {message: "success", product}
 	} catch (err) {
 		return {error: err.message}
 	}
