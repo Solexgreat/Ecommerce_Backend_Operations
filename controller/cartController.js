@@ -2,11 +2,10 @@ const {Cart} = require("../models");
 const {Product} = require("../models");
 
 
-exports.addToCart = (req, res) => {
+exports.addToCart = async (req, res) => {
 	const {productId, quantity, userId} = req.body;
 	if (!productId ||  !quantity){
-		return res.status(403).json({
-			message: "Missing 'productId' or 'quantity' from the request"});
+		return res.status(403).json({message: "Missing 'productId' or 'quantity' from the request"});
 	}
 	try{
 		const product = await Product.findByPk(productId);
@@ -23,15 +22,16 @@ exports.addToCart = (req, res) => {
 		}
 		return res.status(200).json({message: "product sucessfully added", cartItem})
 	} catch (err) {
-		res.status(500).json({ message: 'Something went wrong', error: error.message });
+		return res.status(500).json({ message: 'Something went wrong', error: err.message });
 	}
 }
 
-exports.removeFromCart = (req, res) => {
-	const {productId, userId} = req.body;
+exports.removeFromCart = async (req, res) => {
+	const {productId} = req.params;
+	const {userId} = req.body;
 
 	try{
-		const cart = await Cart.findOne({ where: {id: cartId}})
+		const cart = await Cart.findOne({ where: {productId: productId, userId: userId}})
 		if (!cart) {
 			return res.status(400).json({message: "Item not found in the cart"})
 		}
@@ -42,4 +42,15 @@ exports.removeFromCart = (req, res) => {
 	}
 }
 
-exports.viewCart = {req, res}
+exports.viewCart = async (req, res) => {
+	const {userId} = req.body;
+
+	try{
+		const cartItems = await Cart.findByPk(userId)
+		if (!cartItems)
+			res.status(400).json({message: "Cart is empty"})
+		return res.status(200).json(cartItems)
+	} catch (err) {
+		return res.status(500).json({message: "Internal server error", error: err.mssage})
+	}
+}

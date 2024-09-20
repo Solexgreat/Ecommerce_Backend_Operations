@@ -12,6 +12,13 @@ const authMiddleWare = (req, res, next)=> {
 
 	try {
 		// Verify the token
-		const decode = jwt.verify(token, process.env.)
+		const decoded = jwt.verify(token, process.env.JWT_SECRET);
+		// Attach user information to user object
+		req.user = decoded.user;
+		next();
+	} catch (err) {
+		res.status(401).json({message: "Token is not valid"})
 	}
 }
+
+module.exports = authMiddleWare;
