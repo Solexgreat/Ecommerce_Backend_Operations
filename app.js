@@ -5,6 +5,7 @@ const userRoutes = require('./routes/user');
 const productRoutes = require('./routes/product')
 const orderRoutes = require('./routes/order')
 const cartRoutes = require('./routes/cart')
+const paymentRoutes = require('./routes/payment')
 
 const app = express()
 
@@ -18,6 +19,7 @@ app.use('/api/user', userRoutes);
 app.use('/api/product', productRoutes);
 app.use('/api/order', orderRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/payment', paymentRoutes);
 
 // Default route for testing the server
 app.get('/', (req, res) => {
