@@ -3,7 +3,8 @@ const {Product} = require("../models");
 
 
 exports.addToCart = async (req, res) => {
-	const {productId, quantity, userId} = req.body;
+	const {productId, quantity} = req.body;
+	const userId = req.user.id;
 	if (!productId ||  !quantity){
 		return res.status(403).json({message: "Missing 'productId' or 'quantity' from the request"});
 	}
@@ -28,10 +29,10 @@ exports.addToCart = async (req, res) => {
 
 exports.removeFromCart = async (req, res) => {
 	const {productId} = req.params;
-	const {userId} = req.body;
+	const {userId} = req.user.id;
 
 	try{
-		const cart = await Cart.findOne({ where: {productId: null, userId: null}})
+		const cart = await Cart.findOne({ where: {productId: productId, userId: userId}})
 		if (!cart) {
 			return res.status(400).json({message: "Item not found in the cart"})
 		}
@@ -43,7 +44,7 @@ exports.removeFromCart = async (req, res) => {
 }
 
 exports.viewCart = async (req, res) => {
-	const {userId} = req.body;
+	const {userId} = req.user.id;
 
 	try{
 		const cartItems = await Cart.findAll({ where: {userId: userId}})

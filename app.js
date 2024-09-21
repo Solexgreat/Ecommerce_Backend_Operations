@@ -14,9 +14,9 @@ dotenv.config(); //Load variables from the env
 app.use(bodyParser.json());
 
 // Serve the routes
-app.use('/api', userRoutes);
-app.use('/api', productRoutes);
-app.use('/api', orderRoutes);
+app.use('/api/user', userRoutes);
+app.use('/api/product', productRoutes);
+app.use('/api/order', orderRoutes);
 app.use('/api/cart', cartRoutes);
 
 // Default route for testing the server
