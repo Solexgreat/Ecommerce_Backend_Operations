@@ -28,7 +28,7 @@ exports.updateProduct = async (req, res) => {
 
 exports.getProducts= async (req, res) => {
 	const products = await Product.findAll();
-	return res.status(201).json({products})
+	return res.status(201).json(products)
 }
 
 exports.deleteProduct = async (req, res) => {

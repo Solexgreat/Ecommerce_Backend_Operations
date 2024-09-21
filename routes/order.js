@@ -3,11 +3,11 @@ const router = express.Router();
 const {order} = require('../controller/ordercontroller')
 const {cancelOrder} = require('../controller/ordercontroller')
 const {getOrders} = require('../controller/ordercontroller')
+const authMiddleware = require("../controller/authMiddleware")
 
 
-
-router.post('/order', order);
-router.delete('/cancel', cancelOrder);
-router.get('/', getOrders);
+router.post('/order', authMiddleware,  order);
+router.delete('/cancel', authMiddleware, cancelOrder);
+router.get('/', authMiddleware, getOrders);
 
 module.exports = router;
