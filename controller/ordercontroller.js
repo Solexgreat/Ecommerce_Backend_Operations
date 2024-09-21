@@ -24,6 +24,28 @@ exports.order = async (req, res) => {
 	}
 }
 
+exports.updateOrderStatus = async (req, res) => {
+	const {status, orderId} = req.body;
+	try{
+		const order = await Order.update( {status},
+			{where: {id: orderId}})
+		return res.status(200).json({message: "Status updated sucessfully", order})
+	} catch (err) {
+		return res.status(500),json({message: "Internal server error", error: err.message})
+	}
+}
+
+exports.getOrderStatus = async (req, res) => {
+	const {orderId} = req.params;
+
+	try{
+		const orderStatus = await Order.findOne({ where: {id: orderId}})
+		return res.status(200).json(orderStatus.status)
+	} catch (err) {
+		return res.status(500).json({message: "Internal server error", error: err.message})
+	}
+}
+
 exports.cancelOrder = async (req, res) =>{
 	const {productId, orderId} = req.body;
 	const sign = '+';
