@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
   Order.init({
     orderDate: DataTypes.STRING,
     amount: DataTypes.INTEGER,
+    status: {
+      type: DataTypes.STRING,
+      defaultValue: "pending"
+    }
   }, {
     sequelize,
     modelName: 'Order',

@@ -13,7 +13,7 @@ exports.order = async (req, res) => {
 		const orderDetails = await Order.create({amount: amount,
 			orderDate: orderDate,
 			productId: productId,
-			userId: userId
+			userId: userId,
 	})
 		return res.status(200).json({message: orderStatus.message,
 			order: orderDetails,
@@ -27,8 +27,9 @@ exports.order = async (req, res) => {
 exports.updateOrderStatus = async (req, res) => {
 	const {status, orderId} = req.body;
 	try{
-		const order = await Order.update( {status},
-			{where: {id: orderId}})
+		let order = await Order.update( {status},
+			{where: {id: orderId}});
+		order = await Order.findByPk(orderId);
 		return res.status(200).json({message: "Status updated sucessfully", order})
 	} catch (err) {
 		return res.status(500),json({message: "Internal server error", error: err.message})
@@ -47,10 +48,9 @@ exports.getOrderStatus = async (req, res) => {
 }
 
 exports.cancelOrder = async (req, res) =>{
-	const {productId, orderId} = req.body;
+	const {productId} = req.body;
+	const {orderId} = req.params;
 	const sign = '+';
-	if (!orderId || !productId)
-		return res.status(400).json({message: "Incomplete request"})
 	try{
 		orderToBeDeleted = await Order.findByPk(orderId)
 		if (!orderToBeDeleted)

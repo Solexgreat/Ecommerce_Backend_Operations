@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Product.hasMany (models.Order, {foreignKey: "productId", as: 'order'})
       Product.hasMany (models.Cart, {foreignKey: "productId", as: "cart"})
+      Product.hasMany (models.Review, {foreignKey: "productId", as: 'review'})
     }
   }
   Product.init({

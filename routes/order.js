@@ -9,9 +9,9 @@ const authMiddleware = require("../controller/authMiddleware")
 
 
 router.post('/order', authMiddleware,  order);
-router.delete('/cancel', authMiddleware, cancelOrder);
+router.delete('/:orderId/cancel', authMiddleware, cancelOrder);
 router.get('/', authMiddleware, getOrders);
-router.get('/:order/Status', authMiddleware, getOrderStatus);
+router.get('/:orderId/Status', authMiddleware, getOrderStatus);
 router.put('/update-status', authMiddleware, updateOrderStatus);
 
 module.exports = router;
