@@ -7,6 +7,7 @@ const orderRoutes = require('./routes/order')
 const cartRoutes = require('./routes/cart')
 const paymentRoutes = require('./routes/payment')
 const reviewRoutes = require('./routes/review')
+const {apiLimiter} = require('./limiter')
 
 const app = express()
 
@@ -23,6 +24,8 @@ app.use('/api/cart', cartRoutes);
 app.use('/api/payment', paymentRoutes);
 app.use('/api/review', reviewRoutes);
 
+// Limit the number of IP address
+app.use(apiLimiter);
 
 // Default route for testing the server
 app.get('/', (req, res) => {

@@ -8,7 +8,7 @@ exports.createReview = async (req, res) => {
 	const {userId} = req.user.id;
 
 	try{
-		const product = await Product.findOne({where: {productId}});
+		const product = await Product.findOne({where: {id: productId}});
 		if (!product)
 			return res.status(400).json({message: "Product not found"});
 		const review = await Review.create({rate: rate,
