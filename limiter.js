@@ -7,3 +7,4 @@ exports.apiLimiter = rateLimit({
 	keyGenerator: (req, res) => req.user.id,
 	message: "Too many request from this user, try again later"
 })
+ 
