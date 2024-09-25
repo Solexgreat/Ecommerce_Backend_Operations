@@ -3,7 +3,7 @@ const {productStockUpdate} = require('./productController')
 
 exports.order = async (req, res) => {
 	const {amount, orderDate} = req.body;
-	const productId = req.params;
+	const {productId} = req.params;
 	const userId = req.user.id;
 	const sign = '-';
 	if (!amount || !orderDate || !productId)
