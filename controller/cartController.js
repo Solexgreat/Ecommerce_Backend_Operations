@@ -29,7 +29,7 @@ exports.addToCart = async (req, res) => {
 
 exports.removeFromCart = async (req, res) => {
 	const {productId} = req.params;
-	const {userId} = req.user.id;
+	const userId = req.user.id;
 
 	try{
 		const cart = await Cart.findOne({ where: {productId: productId, userId: userId}})

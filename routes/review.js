@@ -6,6 +6,6 @@ const authMiddleware = require('../controller/authMiddleware')
 
 
 router.post('/:productId/review',authMiddleware, createReview);
-router.put('/:review-id/update-comment',authMiddleware, updateReview);
+router.put('/:reviewId/update-comment',authMiddleware, updateReview);
 
 module.exports = router;
