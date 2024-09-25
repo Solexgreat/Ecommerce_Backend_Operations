@@ -48,7 +48,7 @@ exports.deleteProduct = async (req, res) => {
 
 exports.productStockUpdate = async (productId, amount, sign) => {
 	try{
-		if (typeof productId !== 'number' || typeof amount !== 'number' || typeof sign !== 'string')
+		if (typeof amount !== 'number' || typeof sign !== 'string')
 			throw new Error("Expecting an Integer for productId and amount")
 
 		const product = await Product.findByPk(productId)
