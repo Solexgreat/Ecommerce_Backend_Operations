@@ -8,7 +8,7 @@ const {getOrderStatus} = require('../controller/ordercontroller')
 const authMiddleware = require("../controller/authMiddleware")
 
 
-router.post('/order', authMiddleware,  order);
+router.post('/:productId/order', authMiddleware,  order);
 router.delete('/:orderId/cancel', authMiddleware, cancelOrder);
 router.get('/', authMiddleware, getOrders);
 router.get('/:orderId/Status', authMiddleware, getOrderStatus);
