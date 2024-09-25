@@ -44,7 +44,7 @@ exports.removeFromCart = async (req, res) => {
 }
 
 exports.viewCart = async (req, res) => {
-	const {userId} = req.user.id;
+	const userId = req.user.id;
 
 	try{
 		const cartItems = await Cart.findAll({ where: {userId: userId}})
