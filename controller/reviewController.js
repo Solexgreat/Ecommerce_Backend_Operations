@@ -6,6 +6,9 @@ exports.createReview = async (req, res) => {
 	const {rate, comment} = req.body;
 	const {productId} = req.params;
 	const {userId} = req.user.id;
+	if (!rate || !comment) {
+		return res.status(400).json({message: "rate or comment missing"})
+	}
 
 	try{
 		const product = await Product.findOne({where: {id: productId}});
