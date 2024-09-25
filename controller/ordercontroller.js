@@ -2,7 +2,8 @@ const {Order} = require('../models')
 const {productStockUpdate} = require('./productController')
 
 exports.order = async (req, res) => {
-	const {amount, orderDate, productId, userId} = req.body;
+	const {amount, orderDate, productId} = req.body;
+	const userId = req.user.id;
 	const sign = '-';
 	if (!amount || !orderDate || !productId)
 		return res.status(400).json({message: "Incomplete request"})
@@ -68,7 +69,7 @@ exports.cancelOrder = async (req, res) =>{
 }
 
 exports.getOrders = async (req, res) => {
-	const {userId} = req.body;
+	const userId = req.user.id;
 try{
 	if (!userId)
 		return res.status(400).json({message: "Incomplete request"});
