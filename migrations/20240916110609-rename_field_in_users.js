@@ -3,10 +3,10 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.renameColumn('users', 'password', 'hashed_password');
+    await queryInterface.renameColumn('Users', 'password', 'hashed_password');
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.renameColumn('users', 'hashed_password', 'password')
+    await queryInterface.renameColumn('Users', 'hashed_password', 'password')
   }
 };

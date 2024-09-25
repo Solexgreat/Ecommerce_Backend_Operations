@@ -13,48 +13,48 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.addColumn('products', 'brand', {
-      type: DataTypes.STRING,
-      allowNull: false
-    })
+    // await queryInterface.addColumn('Products', 'brand', {
+    //   type: DataTypes.STRING,
+    //   allowNull: false
+    // })
 
-    await queryInterface.addColumn('products', 'stock', {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 0
-    })
+    // await queryInterface.changeColumn('Products', 'stock', {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: false,
+    //   defaultValue: 0
+    // })
 
-    await queryInterface.addColumn('products', 'ratings', {
-      type: DataTypes.FLOAT,
+    // await queryInterface.addColumn('Products', 'ratings', {
+    //   type: DataTypes.FLOAT,
+    //   allowNull: true,
+    // })
+
+    await queryInterface.addColumn('Products', 'images', {
+      type: DataTypes.TEXT,
       allowNull: true,
     })
 
-    await queryInterface.addColumn('products', 'images', {
-      type: DataTypes.ARRAY(DataTypes.STRING),
-      allowNull: true,
-    })
-
-    await queryInterface.addColumn('products', 'color', {
-      type: DataTypes.STRING,
-      allowNull: true,
-    })
-
-    await queryInterface.addColumn('products', 'size', {
+    await queryInterface.addColumn('Products', 'color', {
       type: DataTypes.STRING,
       allowNull: true,
     })
 
-    await queryInterface.addColumn('products', 'weight', {
+    await queryInterface.addColumn('Products', 'size', {
+      type: DataTypes.STRING,
+      allowNull: true,
+    })
+
+    await queryInterface.addColumn('Products', 'weight', {
       type: DataTypes.FLOAT,
       allowNull: true,
     })
 
-    await queryInterface.addColumn('products', 'dimensions', {
+    await queryInterface.addColumn('Products', 'dimensions', {
       type: DataTypes.FLOAT,
       allowNull: true,
     })
 
-    await queryInterface.addColumn('products', 'discount', {
+    await queryInterface.addColumn('Products', 'discount', {
       type: DataTypes.INTEGER,
       allowNull: true,
       defaultValue: 0,
@@ -68,15 +68,15 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.removeColumn('products', 'category');
-    await queryInterface.removeColumn('products', 'brand');
-    await queryInterface.removeColumn('products', 'stock');
-    await queryInterface.removeColumn('products', 'ratings');
-    await queryInterface.removeColumn('products', 'images');
-    await queryInterface.removeColumn('products', 'color');
-    await queryInterface.removeColumn('products', 'size');
-    await queryInterface.removeColumn('products', 'weight');
-    await queryInterface.removeColumn('products', 'dimensions');
-    await queryInterface.removeColumn('products', 'discount');
+    await queryInterface.removeColumn('Products', 'category');
+    await queryInterface.removeColumn('Products', 'brand');
+    await queryInterface.removeColumn('Products', 'stock');
+    await queryInterface.removeColumn('Products', 'ratings');
+    await queryInterface.removeColumn('Products', 'images');
+    await queryInterface.removeColumn('Products', 'color');
+    await queryInterface.removeColumn('Products', 'size');
+    await queryInterface.removeColumn('Products', 'weight');
+    await queryInterface.removeColumn('Products', 'dimensions');
+    await queryInterface.removeColumn('Products', 'discount');
   }
 };

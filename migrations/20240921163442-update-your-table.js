@@ -10,7 +10,7 @@ module.exports = {
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
 
-    await queryInterface.addColumn('orders', 'status', {
+    await queryInterface.addColumn('Orders', 'status', {
       type: Sequelize.STRING,
       defaultValue: 'pending'
      });
@@ -23,7 +23,7 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-    await queryInterface.removeColumn('orders', 'status', {
+    await queryInterface.removeColumn('Orders', 'status', {
       type: Sequelize.STRING,
       defaultValue: 'pending'
      });
