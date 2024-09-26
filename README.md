@@ -1,5 +1,5 @@
 # E-commerce Backend Operations
-Welcome to the E-commerce Backend Operations repository! This project is designed to provide a robust backend solution for e-commerce applications, allowing users to manage products, their shopping carts, orders, and reviews seamlessly.
+Welcome to the E-commerce Backend Operations repository! This project is designed to provide a robust backend solution for e-commerce applications, allowing users to manage products, their shopping carts, orders, and reviews seamlessly with ease.
 
 ## Table of Contents
 - [Features](#features)
