@@ -8,7 +8,6 @@ Welcome to the E-commerce Backend Operations repository! This project is designe
 - [Installation](#installation)
 - [Usage](#usage)
 - [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 - **User Authentication**: Secure JWT-based authentication for user login and registration.
@@ -39,40 +38,31 @@ To get started with this project, follow these steps:
 ** Clone the repository **:
 
 ```
-bash
-Copy code
 git clone https://github.com/Solexgreat/Ecommerce_Backend_Operations.git
 cd Ecommerce_Backend_Operations
 ```
 ## Install dependencies: 
 ```
-bash
-Copy code
 npm install
 ```
-- ** Set up environment variables**: Create a .env file in the root directory and define your database connection settings:
+ ** Set up environment variables**: Create a .env file in the root directory and define your database connection settings:
 
-plaintext
-Copy code
+```
 DB_HOST=your_host
 DB_USER=your_user
 DB_PASSWORD=your_password
 DB_NAME=your_db_name
-Run migrations: Use Sequelize to run the migrations for setting up your database tables:
-
-bash
-Copy code
+```
+** Run migrations **: Use Sequelize to run the migrations for setting up your database tables:
+```
 npx sequelize-cli db:migrate
+```
 Start the server:
-
-bash
-Copy code
+```
 npm start
-Usage
+```
+## Usage
 Once the server is running, you can interact with the API using your preferred tool (like Postman) or integrate it with a front-end application. Make sure to authenticate users to access certain endpoints.
 
-Contributing
+## Contributing
 Contributions are welcome! If you have suggestions for improvements or new features, please open an issue or submit a pull request.
-
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
