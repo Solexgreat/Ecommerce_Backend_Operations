@@ -41,7 +41,7 @@ To get started with this project, follow these steps:
 git clone https://github.com/Solexgreat/Ecommerce_Backend_Operations.git
 cd Ecommerce_Backend_Operations
 ```
-## Install dependencies: 
+## Install dependencies via: 
 ```
 npm install
 ```
@@ -59,7 +59,7 @@ npx sequelize-cli db:migrate
 ```
 Start the server:
 ```
-npm start
+node app.js
 ```
 ## Usage
 Once the server is running, you can interact with the API using your preferred tool (like Postman) or integrate it with a front-end application. Make sure to authenticate users to access certain endpoints.
