@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken')
 
 exports.signup = async (req, res) => {
 	const {email, name, password} = req.body
-	console.log(req.body);
+
 	if (!email || !name || !password)
 		return res.status(400).json({ message: "Incomplete user details" });
 	try{

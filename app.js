@@ -27,7 +27,7 @@ app.use('/api/review', reviewRoutes);
 // Limit the number of IP address
 app.use(apiLimiter);
 
-// Default route for testing the server
+
 app.get('/', (req, res) => {
 	res.send('Welcome to the API!');
 });
